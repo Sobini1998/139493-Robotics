@@ -1,0 +1,191 @@
+<?xml version="1.0" ?>
+
+<robot name="mrm" xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <!-- BGN - Include -->
+  <xacro:include filename="$(find mrm_description)/urdf/robot_parameters.xacro" />
+  <xacro:include filename="$(find mrm_description)/urdf/links_joints.xacro" />
+  <xacro:include filename="$(find mrm_description)/urdf/materials.xacro" />
+  <!-- END - Include -->
+  
+  <!-- BGN - Robot description -->
+  <m_link_mesh name="${link_00_name}"
+              origin_rpy="1.5 0 0" origin_xyz="0 0 0"
+              mass="1024"
+              ixx="25174" ixy="41" ixz="11"
+              iyy="116852" iyz="-1849"
+              izz="106504"
+              meshfile="package://mrm_description/meshes/Part1.stl"
+              meshscale="0.001 0.001 0.001" 
+              colour="white" />
+              
+  <m_joint name="${link_00_name}__${link_01_name}" type="revolute"
+           axis_xyz="0 0 1"
+           origin_rpy="0 0 0" origin_xyz="0.88 -0.32 0.2"
+           parent="base_link" child="link_01"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+
+  <transmission name="trans_${link_00_name}__${link_01_name}" >
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${link_00_name}__${link_01_name}">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_${link_00_name}__${link_01_name}"  >
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>    
+
+  <m_link_mesh name="${link_01_name}"
+              origin_rpy="1.55 0 0" origin_xyz="-0.15 0.165 0"
+              mass="160"
+              ixx="20070" ixy="0.2059" ixz="0.0084"
+              iyy="7497" iyz="-0.004"
+              izz="21939"
+              meshfile="package://mrm_description/meshes/Part2.stl"
+              meshscale="0.001 0.001 0.001" 
+              colour="orange"/>
+  
+  <m_joint name="${link_01_name}__${link_02_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.25"
+           parent="link_01" child="link_02"
+           limit_e="1000" limit_l="0" limit_u="1" limit_v="1" />
+
+  <transmission name="trans_${link_01_name}__${link_02_name}" >
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${link_01_name}__${link_02_name}">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_${link_01_name}__${link_02_name}"  >
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>           
+
+  <m_link_mesh name="${link_02_name}"
+              origin_rpy="1.55 0 0" origin_xyz="-0.125 0.16 -0.05"
+              mass="122"
+              ixx="47789" ixy="0.1653" ixz="-0.027"
+              iyy="10943" iyz="0.013"
+              izz="40770"
+              meshfile="package://mrm_description/meshes/Part3.stl"
+              meshscale="0.001 0.001 0.001" 
+              colour="white" />      
+
+  <m_joint name="${link_02_name}__${link_03_name}" type="revolute"
+           axis_xyz="0 1 0"
+           origin_rpy="0 0 0" origin_xyz="-0.2 0 0.4"
+           parent="link_02" child="link_03"
+           limit_e="1000" limit_l="0" limit_u="0.5" limit_v="0" />
+
+  <transmission name="trans_${link_02_name}__${link_03_name}" >
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${link_02_name}__${link_03_name}">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_${link_02_name}__${link_03_name}"  >
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>           
+           
+  <m_link_mesh name="${link_03_name}"
+              origin_rpy="1.55 0 0" origin_xyz="0.09 0.37 -0.05"
+              mass="216"
+              ixx="6322" ixy="-3299" ixz="0.422"
+              iyy="24748" iyz="0.0679"
+              izz="27524"
+              meshfile="package://mrm_description/meshes/Part5.stl"
+              meshscale="0.001 0.001 0.001" 
+              colour="orange"  />
+
+   <m_joint name="${link_00_name}__${link_04_name}" type="revolute"
+           axis_xyz="0 0 1"
+           origin_rpy="0 0 0" origin_xyz="0.335 -0.32 0.2"
+           parent="base_link" child="link_04"
+           limit_e="1000" limit_l="-3.14" limit_u="3.14" limit_v="0.5" />
+
+  <transmission name="trans_${link_00_name}__${link_04_name}" >
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${link_00_name}__${link_04_name}">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_${link_00_name}__${link_04_name}"  >
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>         
+           
+  <m_link_mesh name="${link_04_name}"
+              origin_rpy="1.55 0 0" origin_xyz="-0.15 0.165 0"
+              mass="160"
+              ixx="20070" ixy="0.2059" ixz="0.0084"
+              iyy="7497" iyz="-0.004"
+              izz="21939"
+              meshfile="package://mrm_description/meshes/Part2.stl"
+              meshscale="0.001 0.001 0.001" 
+              colour="orange"/>
+
+   <m_joint name="${link_04_name}__${link_05_name}" type="revolute"
+           axis_xyz="0 -1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.25"
+           parent="link_04" child="link_05"
+           limit_e="1000" limit_l="0" limit_u="1" limit_v="1" />
+
+  <transmission name="trans_${link_04_name}__${link_05_name}" >
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${link_04_name}__${link_05_name}">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_${link_04_name}__${link_05_name}"  >
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>         
+
+  <m_link_mesh name="${link_05_name}"
+              origin_rpy="1.55 0 0" origin_xyz="-0.125 0.16 -0.05"
+              mass="122"
+              ixx="47789" ixy="0.1653" ixz="-0.027"
+              iyy="10943" iyz="0.013"
+              izz="40770"
+              meshfile="package://mrm_description/meshes/Part3.stl"
+              meshscale="0.001 0.001 0.001" 
+              colour="white" />          
+
+  <m_joint name="${link_05_name}__${link_06_name}" type="revolute"
+           axis_xyz="0 -1 0"
+           origin_rpy="0 0 0" origin_xyz="0 0 0.5"
+           parent="link_05" child="link_06"
+           limit_e="1000" limit_l="0" limit_u="0.5" limit_v="0" />
+
+  <transmission name="trans_${link_05_name}__${link_06_name}" >
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="${link_05_name}__${link_06_name}">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor_${link_05_name}__${link_06_name}"  >
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>         
+           
+  <m_link_mesh name="${link_06_name}"
+              origin_rpy="1.55 0 3.2" origin_xyz="0.13 -0.52 -0.23"
+              mass="216"
+              ixx="6322" ixy="-3299" ixz="0.422"
+              iyy="24748" iyz="0.0679"
+              izz="27524"
+              meshfile="package://mrm_description/meshes/Part6.stl"
+              meshscale="0.001 0.001 0.001" 
+              colour="orange"  />                    
+            
+  <!-- END - Robot description -->
+  
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+    </plugin>
+  </gazebo>
+
+  </robot>

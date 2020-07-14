@@ -1,0 +1,27 @@
+joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50
+        
+arm_controller:
+    type: position_controllers/JointTrajectoryController
+    joints:
+        - base_link__link_01
+        - link_01__link_02
+        - link_02__link_03
+        - base_link__link_04
+        - link_04__link_05
+        - link_05__link_06
+    
+    constraints:
+      goal_time: 0.6
+      stopped_velocity_tolerance: 0.05
+      base_link__link_01: {trajectory: 0.1, goal: 0.1}
+      link_01__link_02: {trajectory: 0.1, goal: 0.1}
+      link_02__link_03: {trajectory: 0.1, goal: 0.1}
+      base_link__link_04: {trajectory: 0.1, goal: 0.1}
+      link_04__link_05: {trajectory: 0.1, goal: 0.1}
+      link_05__link_06: {trajectory: 0.1, goal: 0.1}
+
+      stop_trajectory_duration: 0.5
+      state_publish_rate:  25
+      action_monitor_rate: 10
